@@ -1,0 +1,10 @@
+body {
+    background-color: #FAF6F0; 
+    
+}
+
+nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
