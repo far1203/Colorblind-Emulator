@@ -2,6 +2,7 @@ import './Login.css'
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import signupImage from "./assets/signup-image.jpg";
 
 function Login() {
 
@@ -41,27 +42,32 @@ function Login() {
         
         <>
 
-        
+      <div className="login-page">
 
         <div className="userField">
-            <header>LOGIN PAGE</header>
-            <input type="text" id="email" placeholder="enter email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="text" id="password" placeholder="enter password" onChange={(e) => setPassword(e.target.value)}/>
-            <button id="loginButton"type="button" onClick={handleClick}>
-            Login
+            <header className="login-title">Login</header>
+            <input type="text" className="form-input" id="email" placeholder="enter email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="text" className="form-input" id="password" placeholder="enter password" onChange={(e) => setPassword(e.target.value)}/>
+            <button className="login-page-button" id="loginButton"type="button" onClick={handleClick}>
+            Log in
             </button>
 
             <div>
   
-            {message && <p>{message}</p>}
+            {message && <p className="error-message">{message}</p>}
             </div>
 
-            <text>Dont have an account?</text>
-            <button id="signUpButton"type="button" onClick={() => navigate('/signup')}>
+            <text className="dont-have-account">Dont have an account?</text>
+            <button className="sign-up-button"id="signUpButton"type="button" onClick={() => navigate('/signup')}>
             Sign Up
             </button>
 
         </div>
+
+        <div className="login-image">
+                <img src={signupImage} alt="signup"></img>
+        </div>
+      </div>
         </>
        
     );

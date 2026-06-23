@@ -2,6 +2,8 @@ import './SignUp.css'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import signupImage from "./assets/signup-image.jpg";
+
 
 function SignUp() {
 
@@ -40,33 +42,40 @@ function SignUp() {
       };
 
     return (
-        <>
+        <div className="signup-page">
 
         
         
-        <div className="signUpField">
-            <header>SIGN UP PAGE</header>
+          <div className="signUpField">
+              <header className="signup-title">Sign Up</header>
 
 
-            <input type="text" id="email" placeholder="enter email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="text" id="password" placeholder="choose password" onChange={(e) => setPassword(e.target.value)}/>
+              <input type="text" className="form-input" placeholder="enter email" onChange={(e) => setEmail(e.target.value)} />
+              <input type="text" className="form-input" placeholder="choose password" onChange={(e) => setPassword(e.target.value)}/>
 
+          
+
+    
+              <button className="signUp-Button"type="button" onClick={sendData}>
+              Sign Up
+              </button>
+
+              <div>
+    
+              {message && <p className="error-message">{message}</p>}
+              </div>
+
+
+             
+
+          </div>
+
+          <div className="signup-image">
+                <img src={signupImage} alt="signup"></img>
+              </div>
         
-
-  
-            <button id="signUpButton"type="button" onClick={sendData}>
-            Sign Up
-            </button>
-
-            <div>
-  
-            {message && <p>{message}</p>}
-            </div>
-
+        
         </div>
-        
-        
-        </>
     )
 }
 

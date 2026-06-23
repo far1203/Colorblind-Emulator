@@ -140,8 +140,22 @@ app.post('/signUpAttempt', async (req, res) => {
 app.post('/saveImage', async (req, res) => {
 
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const authHeader = req.headers.authorization;
+
+        // No Authorization header at all, or wrong format
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ error: 'Not logged in' });
+        }
+
+        const token = authHeader.split(' ')[1];
+
+        let decoded;
+        try {
+            decoded = jwt.verify(token, process.env.JWT_SECRET);
+        } catch (jwtErr) {
+            // Token exists but is invalid or expired
+            return res.status(401).json({ error: 'Not logged in' });
+        }
 
         const { filename, deficiency } = req.body;
 

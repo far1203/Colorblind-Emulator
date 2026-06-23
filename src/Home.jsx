@@ -25,11 +25,11 @@ function Home() {
         
         <nav>
           {token ? (
-            <button onClick={handleLogout}>Log Out</button>  // or whatever you want
+            <button className="logout-button" onClick={handleLogout}>Log Out</button>  // or whatever you want
           ) : (
-            <button onClick={() => navigate('/login')}>Log In</button>
+            <button className="login-button" onClick={() => navigate('/login')}>Log In</button>
           )}
-          <button onClick={() => navigate('/saved')}>My Images</button>
+          <button className="my-images-button" onClick={() => navigate('/saved')}>My Images</button>
         </nav>
         
 

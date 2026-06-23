@@ -1,0 +1,41 @@
+.saved-image-page {
+    overflow: auto;
+}
+
+.saved-images-header {
+    display: flex;
+    justify-content: center;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    padding-left: 100px;
+}
+.image-deficiency {
+    text-transform: capitalize;
+}
+
+
+.saved-image-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: fit-content
+}
+
+.visible-image {
+    border: 2px solid #e5e7eb;
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+
+    transition: all 0.25s ease;
+}
+
+
+

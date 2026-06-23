@@ -6,6 +6,7 @@ import Login from './Login.jsx'
 import Home from './Home.jsx'
 import SignUp from './SignUp.jsx'
 import Saved from './Saved.jsx'
+import Layout from './Layout.jsx'
 
 function App() {
 
@@ -35,9 +36,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />      {/* Landing page */}
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/saved" element={<Saved />} />
+                <Route path="/login" element={<Layout> <Login /> </Layout>} />
+                <Route path="/signup" element={<Layout> <SignUp /> </Layout>} />
+                <Route path="/saved" element={<Layout> <Saved /> </Layout>} />
             </Routes>
         </BrowserRouter>
     )

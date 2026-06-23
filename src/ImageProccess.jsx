@@ -9,6 +9,8 @@ function ImageProcess() {
 
     const [image, setImage] = useState(null);
 
+    const [message, setMessage] = useState('');
+
     const canvasRef = useRef(null);
 
     const imageRef = useRef(null);
@@ -18,15 +20,26 @@ function ImageProcess() {
 
     const handleSave = async () => {
         const token = localStorage.getItem('token')
+
+        if (!token) {
+            setMessage('You need to be logged in to save an image.');
+            return;
+        }
+
         try {
             await axios.post("http://localhost:3000/saveImage", 
                 { filename: image, deficiency: deficiency },
                 { headers: { Authorization: `Bearer ${token}` }}
                 
             )
-            alert('Image saved!');
+            setMessage('Image saved!');
         } catch(err) {
-            console.log(err)
+            if (err.response && err.response.status === 401) {
+                alert('You need to be logged in to save an image.');
+            } else {
+                alert('Something went wrong saving the image.');
+            }
+            console.log(err);
         }
         
 
@@ -83,18 +96,20 @@ function ImageProcess() {
     return(
         
         <>
-
-        <select name="deficiency" id="deficiency" onChange={changeDeficiency}>
+        <div className="page-elements-container">
+        <div className="forms">
+        <select className="deficiency-selector" name="deficiency" id="deficiency" onChange={changeDeficiency}>
             <option value="protanopia">protanopia</option>
             <option value="tritanopia">tritanopia</option>
             <option value="deuteranopia">deuteranopia</option>
             <option value="achromatopsia">achromatopsia</option>
         </select>
       
-        <form encType="multipart/form-data" onSubmit={sendData}>
+        <form className="image-form" encType="multipart/form-data" onSubmit={sendData}>
             <input type="file" id="myFile" name="filename" />
             <input type="submit"/>
         </form>
+        </div>
         <div className="imagesContainer">
         <div className="images">
             <div className="imageContainer">
@@ -113,12 +128,16 @@ function ImageProcess() {
             <canvas className="canvas" ref={canvasRef} width="400" height="400"></canvas>
             </div>
 
-            <div>
-  
-            {image && <button onClick={handleSave}>Save Image</button>}
-            </div>
+          
 
         </div>
+     
+        </div>
+  
+        {image && <button className="save-image-button" onClick={handleSave}>Save Image</button>}
+
+        {message && <p className="error-message">{message}</p>}
+        
         </div>
         </>
 
