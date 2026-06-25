@@ -20,7 +20,7 @@ This is a web application that emulates how images appear to people with various
 - Anyone curious about how color-impaired vision works
 
 
-## Setup
+## Setup 
 
 1. Clone the repo
 2. Run `npm install` in the root folder and in `server/`
